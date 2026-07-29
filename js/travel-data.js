@@ -55,5 +55,8 @@ const TRAVEL_PLACES = [
   { name: "New Zealand",   lat: -40.90, lng: 174.89,  region: "oceania",       blurb: "itinerary coming soon", photos: [] },
 
   // ---------- south america ----------
-  { name: "Colombia",      lat: 4.57,   lng: -74.30,  region: "south america", blurb: "where a coral reef hypnotized me mid-snorkel and an instructor had to come get me", photos: [] },
+  { name: "Colombia",      lat: 4.57,   lng: -74.30,  region: "south america",
+    blurb: "where a coral reef hypnotized me mid-snorkel — click for the full story",
+    story: "We were snorkeling in the middle of the ocean, a whole group huddled together with an instructor at the front and one at the back. At some point I drifted off to the side, staring down, and the sun hit the coral reef at exactly the right spot — the coral, the sheer amount of fish, all of it completely mesmerizing. I was stuck there for five, maybe ten minutes, until an instructor had to dive down just to get my attention and pull me back. When I lifted my head out of the water, the entire group was at least a hundred meters away. Worth it.",
+    photos: [] },
 ];

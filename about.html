@@ -7,6 +7,55 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Special+Elite&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .letter-scene { position: relative; max-width: 720px; margin: 0 auto; }
+  .side-polaroid {
+    position: absolute;
+    width: 170px;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 10px 10px 34px;
+    box-shadow: 4px 6px 14px rgba(59,42,32,0.18);
+    z-index: 5;
+  }
+  .side-polaroid img, .side-polaroid .ph {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+  }
+  .side-polaroid .ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1ece3;
+    border: 1px dashed #cfc4b2;
+    color: var(--ink-soft);
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.8;
+  }
+  .side-polaroid figcaption {
+    font-family: 'Caveat', cursive;
+    font-size: 21px;
+    text-align: center;
+    margin-top: 8px;
+    color: #2f2016;
+  }
+  .pol-dog  { top: 40px;  left: -60px;  transform: rotate(-5deg); }
+  .pol-me   { top: -30px; right: -60px; transform: rotate(4deg); }
+  .pol-rio  { top: 46%;   right: -74px; transform: rotate(-3deg); }
+  .pol-wk   { top: 58%;   left: -74px;  transform: rotate(5deg); }
+  @media (max-width: 1080px) {
+    .side-polaroid { position: static; transform: none !important; margin: 0; }
+    .letter-scene .pol-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 22px; margin-top: 34px;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -19,20 +68,49 @@
     <img src="assets/img/avatar.png" alt="illustration of devika" style="width:110px; transform:rotate(-2deg); filter:drop-shadow(2px 4px 5px rgba(59,42,32,0.18));">
   </div>
 
+  <div class="letter-scene">
   <div class="letter">
-    <p class="salutation">hi, it's devika &#9825;</p>
+    <p class="salutation">hi, i'm devika!</p>
 
-    <p>I grew up in Sugar Land, Texas, loving three things: animals, baking, and going places. High school me volunteered at animal shelters, did beach cleanups with the Houston Zoo, and eventually started hosting my own. For a long time the plan was marine biology &mdash; I wanted to spend my life in ocean conservation.</p>
+    <p>in a nutshell, i'm an extroverted introvert. half of me wants to stay home, cook something new, and watch tv shows until the couch has a permanent dent. the other half wants to be somewhere i've never been, meeting people i've never met, trying things i can't pronounce. that second half has gotten me to 33 countries so far.</p>
 
-    <p>Then the plan changed, the way good plans do. I was set on staying in Texas for college like everyone around me, but applied to a few out-of-state schools "just to see." Carnegie Mellon said yes, I said <em>there's no way I'm moving to Pittsburgh</em>, then I visited, fell in love with the campus and the city, and moved to Pittsburgh.</p>
+    <p>i grew up in sugar land, texas, after my parents moved to the us when i was five months old. the rest of me, rapid fire: aggressively not a morning person, a baker, a collector of old cameras (my grandpa's 1961 yashica is the crown jewel), crafty to a fault &mdash; ceramics, painting, my own nails &mdash; loud about soccer when champions league is on, and always hunting for a new restaurant or caf&eacute; with my friends. my favorite movie is rio.</p>
 
-    <p>At CMU I started in biology, but being surrounded by very technical people (and very technical required courses) did its thing. By the end of sophomore year I switched into statistics and data science, and I've never looked back. What hooked me is the sheer possibility of it: data is a base skill I can master once and point at anything I care about &mdash; healthcare one day, finance another, and maybe, eventually, right back to the ocean. Right now that looks like building AI systems for energy clients at Frame Data & AI and clustering diabetes patient records for healthcare research at CMU.</p>
+    <p>on paper: i study statistics &amp; data science at carnegie mellon with a minor in business, and i'm currently an analyst at frame data &amp; ai, building production AI systems for energy clients. what pulled me into data is the sheer possibility of it &mdash; it's one skill i can point at any problem i find interesting, whether that's the healthcare research i do at cmu, energy, or the animals and oceans i've cared about since i was a kid. my favorite kind of work is taking a messy, ambiguous problem and turning it into something people actually use.</p>
 
-    <p>The ocean thing never really left, though. Once, snorkeling in Colombia, I drifted off from my group because the sun hit a coral reef at exactly the right angle &mdash; fish everywhere, completely mesmerizing. I was frozen there so long an instructor had to dive down and pull me back. When I surfaced, the group was a hundred meters away. Worth it.</p>
+    <p>i'm hoping something here starts a conversation &mdash; a role, a project, or even just a restaurant recommendation. my inbox is always open.</p>
 
-    <p>A perfect Saturday: waking up late (I am aggressively not a morning person), making brunch or baking something, volunteering, watching soccer if it's Champions League season, doing something crafty &mdash; ceramics, painting, my own nails &mdash; and trying a new restaurant or caf&eacute; with my friends. My favorite movie is Rio. If I ever gave a TED talk, it would be about the harm of assumptions and the pressure to follow one set path. I clearly didn't follow mine, and it worked out.</p>
+    <p class="signature">with love,<br>devika</p>
+  </div>
 
-    <p class="signature">devika</p>
+  <!-- side polaroids: drop photos into assets/photos/about/ with these exact
+       filenames and they appear automatically -->
+  <div class="pol-row">
+    <figure class="side-polaroid pol-dog">
+      <img src="assets/photos/about/foster-dog.jpg" alt="devika's foster dog"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph" style="display:none;">add foster-dog.jpg to assets/photos/about/</div>
+      <figcaption>my foster dog</figcaption>
+    </figure>
+    <figure class="side-polaroid pol-me">
+      <img src="assets/photos/about/me.jpg" alt="devika"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph" style="display:none;">add me.jpg to assets/photos/about/</div>
+      <figcaption>me :)</figcaption>
+    </figure>
+    <figure class="side-polaroid pol-rio">
+      <img src="assets/photos/about/rio.jpg" alt="rio, devika's favorite movie"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph" style="display:none;">add rio.jpg to assets/photos/about/</div>
+      <figcaption>my fav movie</figcaption>
+    </figure>
+    <figure class="side-polaroid pol-wk">
+      <img src="assets/photos/about/wild-kratts.jpg" alt="wild kratts, devika's childhood favorite show"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph" style="display:none;">add wild-kratts.jpg to assets/photos/about/</div>
+      <figcaption>childhood classic</figcaption>
+    </figure>
+  </div>
   </div>
 
   <div class="bucket">

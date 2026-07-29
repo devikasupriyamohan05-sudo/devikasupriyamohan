@@ -18,6 +18,7 @@ Open `index.html` in any browser. (The travel globe and fonts load from CDNs, so
 1. **Photography:** drop images into `assets/photos/photography/`, then open `photography.html` and list the filenames in the `PHOTOS` array near the bottom.
 2. **Travel:** drop images into `assets/photos/travel/`, then open `js/travel-data.js` and add them to each country's `photos` list. Edit each `blurb` to be your mini itinerary — it shows on hover.
 3. **Food:** drop images into `assets/photos/food/`, then in `food.html` replace each `<div class="ph">photo coming soon</div>` with `<img src="assets/photos/food/yourphoto.jpg" alt="">`.
+4. **About-page polaroids:** drop 4 photos into `assets/photos/about/` named exactly `foster-dog.jpg`, `me.jpg`, `rio.jpg`, and `wild-kratts.jpg` — they appear automatically, no code edits needed.
 
 Tip: keep images under ~500KB each (export at ~1600px wide) so pages stay fast.
 

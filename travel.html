@@ -110,7 +110,7 @@
   function openModal(d) {
     document.getElementById('modalTitle').textContent = d.name.toLowerCase();
     document.getElementById('modalSub').textContent = d.region;
-    document.getElementById('modalBlurb').textContent = d.blurb;
+    document.getElementById('modalBlurb').textContent = d.story || d.blurb;
     const wrap = document.getElementById('modalPhotos');
     wrap.innerHTML = '';
     if (d.photos && d.photos.length) {
