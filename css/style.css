@@ -160,33 +160,33 @@ a { color: inherit; }
 .obj .obj-label {
   position: absolute;
   left: 50%;
-  bottom: -30px;
+  bottom: -26px;
   transform: translateX(-50%);
   white-space: nowrap;
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
   color: var(--ink-soft);
-  opacity: 0;
-  transition: opacity 0.25s;
+  opacity: 1;
+  transition: color 0.25s;
   background: var(--paper);
   padding: 2px 8px;
 }
-.obj:hover .obj-label { opacity: 1; }
+.obj:hover .obj-label { color: var(--ink); }
 
 @keyframes floaty {
   0%, 100% { margin-top: 0; }
   50% { margin-top: -9px; }
 }
 
-/* positions (desktop) — pulled in closer to the name */
-.obj-film    { top: 9%;  left: 13%;  width: 150px; animation-delay: 0s; }
-.obj-notebook{ top: 5%;  left: 44%;  width: 105px; animation-delay: 0.7s; }
-.obj-phone   { top: 10%; right: 15%; width: 130px; animation-delay: 1.4s; }
-.obj-folder  { top: 50%; left: 15%;  width: 120px; animation-delay: 2.1s; }
-.obj-vinyl   { top: 68%; left: 42%;  width: 150px; animation-delay: 2.8s; }
-.obj-pizza   { top: 52%; right: 13%; width: 150px; animation-delay: 3.5s; }
-.obj-globe   { top: 74%; right: 26%; width: 140px; animation-delay: 4.2s; }
-.obj-scraps  { top: 26%; left: 18%;  width: 165px; animation-delay: 4.9s; }
+/* positions (desktop) — hugging the center */
+.obj-film    { top: 11%; left: 20%;  width: 145px; animation-delay: 0s; }
+.obj-notebook{ top: 5%;  left: 45%;  width: 100px; animation-delay: 0.7s; }
+.obj-phone   { top: 12%; right: 21%; width: 125px; animation-delay: 1.4s; }
+.obj-folder  { top: 55%; left: 23%;  width: 115px; animation-delay: 2.1s; }
+.obj-vinyl   { top: 69%; left: 43%;  width: 145px; animation-delay: 2.8s; }
+.obj-pizza   { top: 55%; right: 20%; width: 145px; animation-delay: 3.5s; }
+.obj-globe   { top: 76%; right: 31%; width: 135px; animation-delay: 4.2s; }
+.obj-scraps  { top: 30%; left: 24%;  width: 155px; animation-delay: 4.9s; }
 
 /* soft treatment for the photographic/cartoon objects */
 .obj-notebook img, .obj-phone img, .obj-pizza img, .obj-scraps img, .obj-folder img, .obj-film img, .obj-globe img {

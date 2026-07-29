@@ -16,7 +16,7 @@
   <!-- center name -->
   <div class="center-card">
     <h1>hi! i'm devika ! <span class="heart">&#9825;</span></h1>
-    <p>welcome! click around to learn about me :)<span class="cursor"></span></p>
+    <p><span id="typeTarget"></span><span class="cursor"></span></p>
     <p class="pro-line">data &amp; AI analyst @ frame data &amp; ai &#183; stats + data science @ carnegie mellon '27</p>
     <div class="quick-links">
       <a href="professional.html">my experience &#8594;</a>
@@ -130,6 +130,18 @@
     vinylWrap.classList.remove('playing');
     if (spotifyController) spotifyController.pause();
   });
+
+  // typewriter effect on the welcome line
+  const typeText = 'welcome! click around to learn about me :)';
+  const typeTarget = document.getElementById('typeTarget');
+  let ti = 0;
+  (function typeNext() {
+    if (ti <= typeText.length) {
+      typeTarget.textContent = typeText.slice(0, ti);
+      ti++;
+      setTimeout(typeNext, 48);
+    }
+  })();
 
   // contact popover
   const phoneBtn = document.getElementById('phoneBtn');
