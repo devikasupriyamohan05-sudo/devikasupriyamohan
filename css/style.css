@@ -178,55 +178,56 @@ a { color: inherit; }
   50% { margin-top: -9px; }
 }
 
-/* positions (desktop) — certificate & laptop (professional) get prime real estate */
-.obj-film    { top: 7%;  left: 5%;  width: 170px; animation-delay: 0s; }
-.obj-notebook{ top: 5%;  left: 44%; width: 105px; animation-delay: 0.7s; }
-.obj-phone   { top: 7%;  right: 7%; width: 115px; animation-delay: 1.4s; }
-.obj-folder  { top: 52%; left: 8%;  width: 185px; animation-delay: 2.1s; }
-.obj-vinyl   { top: 70%; left: 41%; width: 160px; animation-delay: 2.8s; }
-.obj-pizza   { top: 53%; right: 6%; width: 165px; animation-delay: 3.5s; }
-.obj-globe   { top: 76%; right: 23%; width: 125px; animation-delay: 4.2s; }
-.obj-scraps  { top: 27%; left: 13%; width: 195px; animation-delay: 4.9s; }
+/* positions (desktop) — pulled in closer to the name */
+.obj-film    { top: 9%;  left: 13%;  width: 150px; animation-delay: 0s; }
+.obj-notebook{ top: 5%;  left: 44%;  width: 105px; animation-delay: 0.7s; }
+.obj-phone   { top: 10%; right: 15%; width: 130px; animation-delay: 1.4s; }
+.obj-folder  { top: 50%; left: 15%;  width: 120px; animation-delay: 2.1s; }
+.obj-vinyl   { top: 68%; left: 42%;  width: 150px; animation-delay: 2.8s; }
+.obj-pizza   { top: 52%; right: 13%; width: 150px; animation-delay: 3.5s; }
+.obj-globe   { top: 74%; right: 26%; width: 140px; animation-delay: 4.2s; }
+.obj-scraps  { top: 26%; left: 18%;  width: 165px; animation-delay: 4.9s; }
 
 /* soft treatment for the photographic/cartoon objects */
-.obj-notebook img, .obj-phone img, .obj-pizza img, .obj-scraps img, .obj-folder img, .obj-film img {
+.obj-notebook img, .obj-phone img, .obj-pizza img, .obj-scraps img, .obj-folder img, .obj-film img, .obj-globe img {
   filter: drop-shadow(2px 4px 5px rgba(59, 42, 32, 0.18));
 }
 
-/* vinyl: disc hides behind the cover, slides out & spins when playing */
+/* snoopy record: disc overlay spins & notes dance while the song plays */
 .vinyl-wrap { position: relative; width: 100%; }
-.vinyl-cover {
-  position: relative;
-  width: 100%;
-  border: 2px solid #3b2a20;
-  box-shadow: 4px 5px 0 rgba(59, 42, 32, 0.15);
-  display: block;
-  z-index: 2;
-}
-.vinyl-disc {
+.vinyl-snoopy { position: relative; width: 100%; display: block; z-index: 1; }
+.disc-spin {
   position: absolute;
-  top: 4%;
-  left: 6%;
-  width: 92%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  z-index: 1;
-  background:
-    radial-gradient(circle,
-      #e8b8c8 0 12%, #1d1d1d 12.5% 15%,
-      #2e2e2e 15.5% 24%, #1d1d1d 24.5% 27%,
-      #2e2e2e 27.5% 38%, #1d1d1d 38.5% 41%,
-      #2e2e2e 41.5% 52%, #1d1d1d 52.5% 55%,
-      #2e2e2e 55.5% 68%, #1d1d1d 68.5% 100%);
-  transition: transform 0.7s cubic-bezier(0.34, 1.4, 0.64, 1);
+  left: 50.36%;
+  top: 45.33%;
+  width: 29.33%;
+  z-index: 2;
+  pointer-events: none;
 }
-.vinyl-wrap.out .vinyl-disc {
-  transform: translateX(58%);
-  animation: spin 3.5s linear infinite;
+.vinyl-wrap.playing .disc-spin { animation: discspin 2.6s linear infinite; }
+@keyframes discspin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
-@keyframes spin {
-  from { transform: translateX(58%) rotate(0deg); }
-  to   { transform: translateX(58%) rotate(360deg); }
+.vinyl-wrap .note {
+  position: absolute;
+  font-size: 24px;
+  color: #4a6fb5;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+.note.n1 { top: -4%;  left: 58%; }
+.note.n2 { top: -16%; left: 74%; font-size: 30px; }
+.note.n3 { top: 2%;   left: 88%; font-size: 19px; }
+.vinyl-wrap.playing .note { animation: notedance 1.6s ease-in-out infinite; }
+.vinyl-wrap.playing .note.n2 { animation-delay: 0.35s; }
+.vinyl-wrap.playing .note.n3 { animation-delay: 0.7s; }
+@keyframes notedance {
+  0%, 100% { opacity: 0;   transform: translateY(6px) rotate(-8deg); }
+  30%      { opacity: 1;   transform: translateY(-6px) rotate(6deg); }
+  60%      { opacity: 0.9; transform: translateY(-12px) rotate(-5deg); }
+  90%      { opacity: 0;   transform: translateY(-20px) rotate(4deg); }
 }
 
 /* spotify player popover */
