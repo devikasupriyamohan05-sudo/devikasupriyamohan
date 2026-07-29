@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>travel — devika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body { overflow-x: hidden; }
+  .globe-wrap { min-height: 60vh; }
+</style>
+</head>
+<body>
+
+<nav class="topnav"><a class="home-link" href="index.html">home</a></nav>
+
+<main class="page" style="max-width: 1200px;">
+  <div class="page-label" style="text-align:center;">Travel</div>
+  <div class="travel-count hand">33 countries &amp; counting</div>
+  <p class="travel-hint">spin me around &#183; hover a dot for the preview &#183; click for the full story</p>
+
+  <div class="globe-wrap">
+    <div id="globeViz"></div>
+  </div>
+</main>
+
+<!-- country modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close-x" id="modalClose" aria-label="close">&#10005;</button>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-blurb" id="modalBlurb"></div>
+    <div class="modal-photos" id="modalPhotos"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  devika supriya mohan &#183; <a href="mailto:devika.supriyamohan05@gmail.com">devika.supriyamohan05@gmail.com</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.32.4/dist/globe.gl.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="js/travel-data.js"></script>
+<script>
+(function () {
+  const container = document.getElementById('globeViz');
+  const width = Math.min(window.innerWidth - 20, 900);
+  const height = Math.min(window.innerHeight * 0.72, 680);
+
+  const world = Globe()(container)
+    .width(width)
+    .height(height)
+    .backgroundColor('rgba(0,0,0,0)')
+    .showAtmosphere(true)
+    .atmosphereColor('#cbb8a4')
+    .atmosphereAltitude(0.12)
+    .pointsData(TRAVEL_PLACES)
+    .pointLat('lat')
+    .pointLng('lng')
+    .pointColor(() => '#c9452e')
+    .pointAltitude(0.015)
+    .pointRadius(0.85)
+    .pointsMerge(false)
+    .pointLabel(d => {
+      const thumbs = (d.photos || []).slice(0, 2)
+        .map(p => '<img src="' + p + '" alt="">').join('');
+      return '<div class="globe-tooltip">' +
+        '<div class="tt-name">' + d.name + '</div>' +
+        '<div class="tt-blurb">' + d.blurb + '</div>' +
+        (thumbs ? '<div class="tt-thumbs">' + thumbs + '</div>' : '') +
+        '<div class="tt-more">click for more &#8594;</div>' +
+        '</div>';
+    })
+    .onPointClick(d => openModal(d));
+
+  // paper-white globe
+  world.globeMaterial().color.set('#fdfbf6');
+  world.globeMaterial().emissive.set('#f4efe6');
+  world.globeMaterial().emissiveIntensity = 0.25;
+  world.globeMaterial().shininess = 0.4;
+
+  // gentle auto-rotate until the user grabs it
+  world.controls().autoRotate = true;
+  world.controls().autoRotateSpeed = 0.55;
+  world.controls().enableZoom = true;
+  container.addEventListener('pointerdown', () => { world.controls().autoRotate = false; });
+
+  // land shapes
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+    .then(r => r.json())
+    .then(topo => {
+      const countries = topojson.feature(topo, topo.objects.countries).features;
+      world
+        .polygonsData(countries)
+        .polygonCapColor(() => '#e7ddcb')
+        .polygonSideColor(() => 'rgba(0,0,0,0)')
+        .polygonStrokeColor(() => '#b8a88f')
+        .polygonAltitude(0.006);
+    })
+    .catch(() => { /* globe still works without land shapes */ });
+
+  // start centered on the atlantic so both americas + europe are visible
+  world.pointOfView({ lat: 25, lng: -40, altitude: 2.1 }, 0);
+
+  // ---------- modal ----------
+  const backdrop = document.getElementById('modalBackdrop');
+  function openModal(d) {
+    document.getElementById('modalTitle').textContent = d.name.toLowerCase();
+    document.getElementById('modalSub').textContent = d.region;
+    document.getElementById('modalBlurb').textContent = d.blurb;
+    const wrap = document.getElementById('modalPhotos');
+    wrap.innerHTML = '';
+    if (d.photos && d.photos.length) {
+      d.photos.forEach(p => {
+        const img = document.createElement('img');
+        img.src = p; img.alt = d.name;
+        wrap.appendChild(img);
+      });
+    } else {
+      wrap.innerHTML = '<div class="photos-empty">photos from ' + d.name.toLowerCase() +
+        ' are being dug out of the camera roll &mdash; check back soon :)</div>';
+    }
+    backdrop.classList.add('open');
+  }
+  document.getElementById('modalClose').addEventListener('click', () => backdrop.classList.remove('open'));
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) backdrop.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') backdrop.classList.remove('open'); });
+})();
+</script>
+</body>
+</html>
